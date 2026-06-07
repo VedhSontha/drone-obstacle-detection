@@ -1,0 +1,5 @@
+path: SemanticDrone-YOLO
+train: train/images
+val: val/images
+nc: 6
+names: ['vegetation', 'structure', 'fence', 'living', 'vehicle', 'obstacle']

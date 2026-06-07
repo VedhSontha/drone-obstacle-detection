@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Ignore Raw Datasets (7.6 GB)
+dataset/
+SemanticDrone-YOLO/
+RGB_color_image_masks/
