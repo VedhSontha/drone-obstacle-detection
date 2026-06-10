@@ -22,6 +22,15 @@ Standard bounding-box detectors often fail to understand depth. A large distant 
 * Large, distant background objects are correctly filtered out as low-risk.
 * Small, close obstacles directly entering the central flight path (corridor) dynamically scale up the danger score, triggering immediate braking.
 
+The Safety Score ($S_{hazard}$) for a detected obstacle is computed as:
+$$S_{hazard} = W_{class} \times \left( \alpha \cdot \text{Area}_{ratio} + \beta \cdot (1 - Y_{normalized}) \right)$$
+where:
+* $W_{class}$ represents the class-specific hazard weight (e.g., `structure` vs. `living`).
+* $\text{Area}_{ratio}$ is the bounding box area relative to the total frame size (larger boxes represent closer obstacles).
+* $Y_{normalized}$ is the vertical coordinate of the box center (closer ground obstacles occupy lower positions in the frame, while distant mountains sit near the horizon).
+* $\alpha, \beta$ are scaling coefficients weighting size vs. perspective height.
+
+
 ### 2. YOLO + DroNet Hybrid Fusion
 * **YOLO (v8/v11):** Trained on a simplified version of the **Semantic Drone Dataset** (6 classes: `vegetation`, `structure`, `fence`, `living` (people/animals), `vehicle`, and `obstacle`). It maps *what* and *where* objects are in the frame.
 * **DroNet:** A lightweight convolutional neural network that estimates continuous *collision probability* and *steering angles* based on visual input.
