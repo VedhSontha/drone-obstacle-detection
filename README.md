@@ -101,7 +101,7 @@ drone_obstacle_detection/
 
 ### 1. Clone the Project
 ```bash
-git clone <repository-url>
+git clone https://github.com/VedhSontha/drone-obstacle-detection.git
 cd drone_obstacle_detection
 ```
 
