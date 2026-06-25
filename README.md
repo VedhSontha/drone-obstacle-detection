@@ -118,6 +118,13 @@ pip install -r of-obstacledetection/requirements.txt
 pip install ultralytics opencv-python matplotlib tqdm ipykernel
 ```
 
+### 3. Verify the Environment
+Before running the main scripts or notebook, verify that your local environment is correctly configured:
+```bash
+python verify_environment.py
+```
+This script will check your Python, PyTorch (and CUDA GPU availability), OpenCV, and Ultralytics installations, and confirm that all required local model weights and structures exist. It will return a success/failure status code accordingly.
+
 ---
 
 ## 🚀 Pipeline Workflow
