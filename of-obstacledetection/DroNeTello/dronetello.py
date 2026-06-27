@@ -58,9 +58,10 @@ class FrontEnd(object):
     def __init__(self):
 
         # FlowDroNet Configuration
-        self.json_model_path = "./models/DroNet/model_struct.json"
-        self.weights_path = "./models/DroNet/model_weights_new_best.h5"
-        self.output_folder = './recorded/'
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        self.json_model_path = os.path.join(script_dir, "models/DroNet/model_struct.json")
+        self.weights_path = os.path.join(script_dir, "models/DroNet/model_weights_new_best.h5")
+        self.output_folder = os.path.join(script_dir, 'recorded/')
         self.target_size = (200, 200)
         self.FPS = 10
 
