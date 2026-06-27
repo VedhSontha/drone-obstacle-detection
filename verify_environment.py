@@ -43,8 +43,9 @@ def check_dependencies() -> bool:
         all_ok = False
 
     # 5. Check DroNet Model Checkpoints
-    dronet_json = Path("of-obstacledetection/DroNeTello/models/DroNet/model_struct.json")
-    dronet_weights = Path("of-obstacledetection/DroNeTello/models/DroNet/model_weights_new_best.h5")
+    script_dir = Path(__file__).resolve().parent
+    dronet_json = script_dir / "of-obstacledetection/DroNeTello/models/DroNet/model_struct.json"
+    dronet_weights = script_dir / "of-obstacledetection/DroNeTello/models/DroNet/model_weights_new_best.h5"
     
     print("-" * 60)
     print("📂 CHECKING LOCAL CHECKPOINTS:")
