@@ -41,6 +41,16 @@ def check_dependencies() -> bool:
     except ImportError:
         print("[Ultralytics] ❌ NOT INSTALLED (Required for YOLOv8/v11 inference)")
         all_ok = False
+        
+    # 4b. Check TensorFlow (Required for DroNet)
+    try:
+        import tensorflow as tf
+        print(f"[TensorFlow] version: {tf.__version__} - Installed successfully")
+        tf_cuda = tf.test.is_built_with_cuda()
+        print(f"[TensorFlow] CUDA support: {tf_cuda}")
+    except ImportError:
+        print("[TensorFlow] ❌ NOT INSTALLED (Required for DroNet Keras inference)")
+        all_ok = False
 
     # 5. Check DroNet Model Checkpoints
     script_dir = Path(__file__).resolve().parent
