@@ -70,7 +70,7 @@ def scale(img, zoom_factor):
     bbox = np.array([y1, x1, y2, x2])
 
     # Map back to original image coordinates
-    bbox = (bbox / zoom_factor).astype(np.int)
+    bbox = (bbox / zoom_factor).astype(int)
     y1, x1, y2, x2 = bbox
     cropped_img = img[y1:y2, x1:x2]
 
