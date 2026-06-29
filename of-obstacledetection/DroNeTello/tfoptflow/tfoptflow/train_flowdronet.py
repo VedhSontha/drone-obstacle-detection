@@ -17,23 +17,22 @@ from model_flowdronet import _DEFAULT_FLOWDRONET_OPTS
 from dataset_flowdronet import FlowDroNetDataset
 from model_pwcnet import ModelPWCNet
 
-# TODO: You MUST set paths to the correct path on your machine!
-if sys.platform.startswith("linux"):
-    _MODEL_PATH = '/home/recherche/dev-msperling/misc/tfoptflow/tfoptflow/models/' \
-                + 'pwcnet-sm-6-2-cyclic-chairsthingsmix/pwcnet.ckpt-49000'
-    _DATASET_ROOT = '/home/recherche/data/collision_new'
-    _TRAIN_IMGS = 'all_real_newres'
-    _TRAIN_FLOW = 'all_liteflownet_newres'
-    _TEST_IMGS = 'all_real_newres'
-else:
-    _MODEL_PATH = '/Users/nfinite/Library/Mobile Documents/com~apple~CloudDocs/MISTLab/Dev/misc/tfoptflow/tfoptflow/models/' \
-                + 'pwcnet-sm-6-2-cyclic-chairsthingsmix/pwcnet.ckpt-49000'
-    _DATASET_ROOT = '/Users/nfinite/data/test'
-    _TRAIN_IMGS = 'treal'
-    _TRAIN_FLOW = 'traw2'
-    _TEST_IMGS = 'treal'
+import os
+localpath = os.path.dirname(os.path.realpath(__file__))
 
-print(_MODEL_PATH)
+_MODEL_PATH = os.environ.get(
+    "PWC_MODEL_PATH", 
+    os.path.join(localpath, 'models', 'pwcnet-sm-6-2-cyclic-chairsthingsmix', 'pwcnet.ckpt-49000')
+)
+_DATASET_ROOT = os.environ.get(
+    "DATASET_ROOT", 
+    os.path.join(localpath, 'dataset_root')
+)
+_TRAIN_IMGS = os.environ.get("TRAIN_IMGS", 'treal')
+_TRAIN_FLOW = os.environ.get("TRAIN_FLOW", 'traw2')
+_TEST_IMGS = os.environ.get("TEST_IMGS", 'treal')
+
+print(f"Using model path: {_MODEL_PATH}")
 # Set controller device and devices
 # A one-gpu setup would be something like controller='/device:GPU:0' and gpu_devices=['/device:GPU:0']
 gpu_devices = ['/device:GPU:0']
