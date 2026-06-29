@@ -64,7 +64,7 @@ class FrontEnd(object):
         # FlowDroNet Configuration
         self.pwcnet_ckpt_path = localpath + '/models/pwc-net/pwcnet.ckpt-11000'
         self.dronet_model_path = localpath + '/models/FlowDroNet/model_graph_final.pb'
-        self.output_folder = '/recordings/test_0'
+        self.output_folder = os.path.join(localpath, 'recordings/test_0')
         self.logfile = "log.json"
         self.FPS = 10
         self.hud_scale = 1.5
