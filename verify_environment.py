@@ -52,6 +52,22 @@ def check_dependencies() -> bool:
         print("[TensorFlow] ❌ NOT INSTALLED (Required for DroNet Keras inference)")
         all_ok = False
 
+    # 4c. Check Pygame (Required for Tello controller GUI)
+    try:
+        import pygame
+        print(f"[Pygame] version: {pygame.__version__} - Installed successfully")
+    except ImportError:
+        print("[Pygame] ❌ NOT INSTALLED (Required for interactive drone GUI/keyboard control)")
+        all_ok = False
+
+    # 4d. Check DJITelloPy (Required for Tello communication)
+    try:
+        import djitellopy
+        print("[DJITelloPy] Installed successfully")
+    except ImportError:
+        print("[DJITelloPy] ❌ NOT INSTALLED (Required for Tello drone communication)")
+        all_ok = False
+
     # 5. Check DroNet Model Checkpoints
     script_dir = Path(__file__).resolve().parent
     dronet_json = script_dir / "of-obstacledetection/DroNeTello/models/DroNet/model_struct.json"
