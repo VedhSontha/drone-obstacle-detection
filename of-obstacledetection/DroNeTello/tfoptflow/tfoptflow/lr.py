@@ -167,7 +167,7 @@ def _lr_cyclic(g_step_op, base_lr=None, max_lr=None, step_size=None, gamma=0.999
     clr = tf.multiply(a1, a2)
 
     if mode == 'triangular2':
-        clr = tf.divide(clr, tf.cast(tf.pow(2, tf.cast(cycle - 1, tf.int32)), tf.float32))
+        clr = tf.divide(clr, tf.pow(2.0, tf.subtract(cycle, 1.0)))
     if mode == 'exp_range':
         clr = tf.multiply(tf.pow(gamma, global_step), clr)
 
