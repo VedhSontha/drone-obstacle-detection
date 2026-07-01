@@ -49,11 +49,14 @@ def pwcnet_loss(y, y_hat_pyr, opts):
 
     with tf.name_scope(opts['loss_fn']):
         total_loss = 0.
-        _, gt_height, _, _ = tf.unstack(tf.shape(y))
+        y_shape = tf.shape(y)
+        gt_height = y_shape[1]
 
         # Add individual pyramid level losses to the total loss
         for lvl in range(opts['pyr_lvls'] - opts['flow_pred_lvl'] + 1):
-            _, lvl_height, lvl_width, _ = tf.unstack(tf.shape(y_hat_pyr[lvl]))
+            lvl_shape = tf.shape(y_hat_pyr[lvl])
+            lvl_height = lvl_shape[1]
+            lvl_width = lvl_shape[2]
 
             # Scale the full-size groundtruth to the correct lower res level
             scaled_flow_gt = tf.image.resize_bilinear(y, (lvl_height, lvl_width))
